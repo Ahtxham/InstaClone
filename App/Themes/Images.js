@@ -1,9 +1,7 @@
 const images = {
-
-
+  
   Ellipses: require("../Images/Ellipses.png"),
   ArrowDown: require("../Images/ArrowDown.png"),
-
 
   Home: require("../Images/Home.png"),
   SearchBlack: require("../Images/SearchBlack.png"),

@@ -14,26 +14,16 @@ import Profile from '../Containers/MainScreens/Profile'
 // ----------------------------------------------------------------------------------------------
 
 import HeaderStyle from "../Styles/Header"
-
 import { Images, } from '../Themes'
-
-
 
 
 // +++++++++++++++++++++    Navigations types   +++++++++++++++++++++++++++++++++
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const BottomTabNavigator = createBottomTabNavigator();
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
 
 
 export default class Route extends React.Component {
@@ -50,7 +40,6 @@ export default class Route extends React.Component {
         BottomTab = () => {
             return (
                 <BottomTabNavigator.Navigator tabBarOptions={{
-                    activeTintColor: '#e91e63',
                     showLabel:false
                   }}>
                     <BottomTabNavigator.Screen name="HomeScreen" component={Home}

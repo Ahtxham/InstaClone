@@ -1,16 +1,23 @@
-import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity, Button, } from 'react-native';
-
+import * as React from 'react';
+import { View, Text, Image, TouchableOpacity, Button, TouchableHighlight, ScrollView } from 'react-native';
 import { Header, Left, Icon, Right, Body, Title } from 'native-base';
-import { ScrollableTabView } from '@valdio/react-native-scrollable-tabview'
 
 import HeaderStyle from '../../Styles/Header'
 import Style from '../../Styles/ProfileStyles'
-import { Images, } from '../../Themes/'
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Styles from '../../Styles/Header';
-import { TouchableHighlight, ScrollView } from 'react-native-gesture-handler';
-export default class Profile extends Component {
+import { Images, Colors } from '../../Themes/'
+
+// --------------------     Handling Of Top Bar     -------------------------------------------
+// Top Bar Screens to be displayed
+import NormalPosts from '../../Components/ProfileComponent/NormalPosts'
+import IGTVPosts from '../../Components/ProfileComponent/IGTVPosts'
+import TaggedPosts from '../../Components/ProfileComponent/TaggedPosts'
+// Top Bar Naviagator
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+const TopTab = createMaterialTopTabNavigator();
+// ---------------------------------------------------------------------------------------------
+
+
+export default class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,6 +25,37 @@ export default class Profile extends Component {
     }
 
     render() {
+        //  Top Navigator Stack that can be used to display any where in the screen 
+        TopTabStack = () => {
+            return (
+                <TopTab.Navigator initialRouteName="NormalPosts" >
+                    <TopTab.Screen
+                        name="NormalPosts"
+                        component={NormalPosts}
+                        options={{
+                            tabBarLabel: 'Posts',
+                            
+                        }}
+                    />
+                    <TopTab.Screen
+                        name="IGTVPosts"
+                        component={IGTVPosts}
+                        options={{
+                            tabBarLabel: 'IGTV',
+                            
+                        }}
+                    />
+                    <TopTab.Screen
+                        name="TaggedPosts"
+                        component={TaggedPosts}
+                        options={{
+                            tabBarLabel: 'Tagged',
+                            
+                        }}
+                    />
+                </TopTab.Navigator>
+            );
+        }
         return (
             <View style={{ backgroundColor: Colors.silver }}>
                 <Header style={HeaderStyle.header} >
@@ -98,26 +136,10 @@ export default class Profile extends Component {
                         </View>
 
                     </View>
+                    < TopTabStack />
 
-
-
-                    <View style={{ flexDirection: "row", }} >
-                        <Image style={Style.PostImages} source={Images.download} />
-                        <Image style={Style.PostImages} source={Images.download} />
-                        <Image style={Style.PostImages} source={Images.download} />
-                    </View>
-
-                    <View style={{ flexDirection: "row", }} >
-                        <Image style={Style.PostImages} source={Images.download} />
-                        <Image style={Style.PostImages} source={Images.download} />
-                        <Image style={Style.PostImages} source={Images.download} />
-                    </View>
-                    <View style={{ flexDirection: "row", }} >
-                        <Image style={Style.PostImages} source={Images.download} />
-                        <Image style={Style.PostImages} source={Images.download} />
-                        <Image style={Style.PostImages} source={Images.download} />
-                    </View>
                 </ScrollView>
+
 
             </View>
         );
